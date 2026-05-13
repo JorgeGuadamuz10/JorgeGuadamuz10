@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir \"C:\\\\Users\\\\Jorge Guadamuz\\\\Desktop\\\\Portafolio ML\\\\src\")",
+      "Bash(mkdir \"C:\\\\Users\\\\Jorge Guadamuz\\\\Desktop\\\\Portafolio ML\\\\.github\\\\workflows\")",
+      "Bash(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\Jorge Guadamuz\\\\Desktop\\\\Portafolio ML\\\\.github\\\\workflows\")",
+      "Bash(pip install *)",
+      "Bash(pip show *)",
+      "Bash(python pipeline.py)",
+      "Bash(start *)",
+      "Bash(python *)",
+      "Bash(Remove-Item -Path predictions.csv -ErrorAction SilentlyContinue)",
+      "Bash(Write-Host \"predictions.csv deleted \\(or did not exist\\)\")",
+      "PowerShell(Start-Process \"C:\\\\Users\\\\Jorge Guadamuz\\\\Desktop\\\\Portafolio ML\\\\oraculo-sp500\\\\index.html\")"
+    ]
+  }
+}

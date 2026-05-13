@@ -1,0 +1,363 @@
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>The Oracle &#8212; S&amp;P 500 Weekly Forecast</title><style>
+:root {
+  --bg:         #0f172a;
+  --surface:    #1e293b;
+  --surface-2:  #263548;
+  --border:     #334155;
+  --accent:     #3b82f6;
+  --text:       #f1f5f9;
+  --text-muted: #94a3b8;
+  --tag-bg:     #172554;
+  --tag-text:   #93c5fd;
+  --radius:     12px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Navigation bar */
+.o-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px;
+  background: #111827;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.o-nav__back {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: opacity 0.15s;
+}
+.o-nav__back:hover { opacity: 0.75; }
+.o-nav__title {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Chart container */
+.o-chart-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 24px 8px;
+}
+
+/* Explanatory section */
+.o-info {
+  background: var(--bg);
+  padding: 48px 24px 72px;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+}
+.o-info__container { max-width: 1100px; margin: 0 auto; }
+
+.o-section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.o-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Cards */
+.o-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.o-card--wide { grid-column: 1 / -1; }
+.o-card--accent { border-top: 3px solid var(--accent); }
+
+.o-card h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+.o-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+.o-card ul {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 0;
+}
+.o-card li {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.o-card li strong { color: var(--text); }
+
+/* Feature table */
+.o-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.o-table th {
+  text-align: left;
+  padding: 9px 12px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--border);
+}
+.o-table td {
+  padding: 9px 12px;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(51,65,85,0.45);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.o-table td:first-child {
+  color: var(--tag-text);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.o-table tr:last-child td { border-bottom: none; }
+
+/* Model comparison chips */
+.o-model-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.o-model-chip {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  flex: 1;
+  min-width: 160px;
+}
+.o-model-chip__name {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.o-model-chip__desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Disclaimer footer */
+.o-footer {
+  text-align: center;
+  padding: 20px 24px;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  border-top: 1px solid var(--border);
+}
+.o-footer a { color: var(--accent); text-decoration: none; }
+.o-footer a:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .o-grid { grid-template-columns: 1fr; }
+  .o-card--wide { grid-column: auto; }
+  .o-nav__title { display: none; }
+  .o-table { font-size: 0.78rem; }
+  .o-chart-wrapper { padding: 16px 12px 0; }
+}
+</style><meta charset="utf-8" /></head>
+<body>
+<nav class="o-nav">
+  <a href="../index.html" class="o-nav__back">&#8592; Portfolio</a>
+  <span class="o-nav__title">The Oracle &middot; S&amp;P 500 Weekly Forecast</span>
+</nav>
+<div class="o-chart-wrapper">
+    <div>                        <script>window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.5.0.min.js" integrity="sha256-fHbNLP+GlIXN+efbQec78UkemUz3NJp7UmfGxC1tNxs=" crossorigin="anonymous"></script>                <div id="7b4ff168-e4b5-4e6a-a86c-cfc1b06bf793" class="plotly-graph-div" style="height:750px; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("7b4ff168-e4b5-4e6a-a86c-cfc1b06bf793")) {                    Plotly.newPlot(                        "7b4ff168-e4b5-4e6a-a86c-cfc1b06bf793",                        [{"close":{"dtype":"f8","bdata":"AAAAgIL9ukAAAABA4d66QAAAACAFVLpAAAAAoDDouUAAAADgemq5QAAAAKDZ4LhAAAAAoLC2uUAAAADg46C6QAAAAGAP1rtAAAAAgBT9u0AAAADAHj68QAAAACDu5rxAAAAAwPXovEA="},"decreasing":{"line":{"color":"#ef5350"}},"high":{"dtype":"f8","bdata":"AAAAINwDu0AAAACAgii7QAAAAIAC9bpAAAAAgBS9ukAAAADATGK6QAAAAMCe+7lAAAAAgKvRuUAAAAAgxb26QAAAACCF67tAAAAAAJcAvEAAAAAghWi8QAAAAACA6bxAAAAAYPgEvUA="},"increasing":{"line":{"color":"#26a69a"}},"low":{"dtype":"f8","bdata":"AAAAAIB3ukAAAAAgbp+6QAAAAIBrNrpAAAAAgOvfuUAAAAAghUm5QAAAAIAU1LhAAAAAAOmsuEAAAADAjIa5QAAAACAFhrpAAAAAwIyGu0AAAAAg3MO7QAAAAMAeBrxAAAAAQIqqvEA="},"name":"S&P 500","open":{"dtype":"f8","bdata":"AAAAINyjukAAAAAAQPW6QAAAACBcqLpAAAAAwMwrukAAAADAXhK6QAAAAMD1rrlAAAAAwF4DuUAAAAAAqbu5QAAAAGB4lrpAAAAAwAzNu0AAAABguPC7QAAAAEBhPLxAAAAAYE\u002fZvEA="},"x":["2026-02-20T00:00:00","2026-02-27T00:00:00","2026-03-06T00:00:00","2026-03-13T00:00:00","2026-03-20T00:00:00","2026-03-27T00:00:00","2026-04-03T00:00:00","2026-04-10T00:00:00","2026-04-17T00:00:00","2026-04-24T00:00:00","2026-05-01T00:00:00","2026-05-08T00:00:00","2026-05-15T00:00:00"],"type":"candlestick","xaxis":"x","yaxis":"y"},{"hoverinfo":"text","line":{"color":"#3b82f6","dash":"dot","width":1.5},"marker":{"color":["#3b82f6","#3b82f6","#3b82f6","#3b82f6","#3b82f6","#3b82f6","#3b82f6","#3b82f6","#3b82f6","#3b82f6","#f59e0b"],"line":{"color":"rgba(255,255,255,0.3)","width":1},"size":11,"symbol":"diamond"},"mode":"markers+lines","name":"Forecast","text":["\u003cb\u003eForecast\u003c\u002fb\u003e: $6,885 (+0.09%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: Mar 06, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $6,895 (+2.30%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: Mar 13, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $6,707 (+1.12%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: Mar 20, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $6,505 (-0.03%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: Mar 27, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $6,344 (-0.39%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: Apr 03, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $6,595 (+0.18%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: Apr 10, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $6,820 (+0.04%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: Apr 17, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $7,151 (+0.35%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: Apr 24, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $7,183 (+0.25%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: May 01, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $7,238 (+0.11%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: May 08, 2026","\u003cb\u003eForecast\u003c\u002fb\u003e: $7,405 (+0.09%)\u003cbr\u003eModel: RandomForest\u003cbr\u003eWeek: May 15, 2026"],"x":["2026-03-06T00:00:00","2026-03-13T00:00:00","2026-03-20T00:00:00","2026-03-27T00:00:00","2026-04-03T00:00:00","2026-04-10T00:00:00","2026-04-17T00:00:00","2026-04-24T00:00:00","2026-05-01T00:00:00","2026-05-08T00:00:00","2026-05-15T00:00:00"],"y":[6885.07,6894.93,6706.74,6504.83,6343.73,6594.71,6819.51,7150.95,7183.09,7238.11,7405.35],"type":"scatter","xaxis":"x","yaxis":"y"},{"hoverinfo":"text","line":{"color":"#10b981","dash":"solid","width":1.5},"marker":{"color":"#10b981","line":{"color":"rgba(255,255,255,0.3)","width":1},"size":10,"symbol":"circle"},"mode":"markers+lines","name":"Actual Close","text":["\u003cb\u003eActual\u003c\u002fb\u003e: $6,740 (-2.02%)\u003cbr\u003eForecast: $6,885 (+0.09%)\u003cbr\u003eError: -2.11 pp\u003cbr\u003eWeek: Mar 06, 2026","\u003cb\u003eActual\u003c\u002fb\u003e: $6,632 (-1.60%)\u003cbr\u003eForecast: $6,895 (+2.30%)\u003cbr\u003eError: -3.90 pp\u003cbr\u003eWeek: Mar 13, 2026","\u003cb\u003eActual\u003c\u002fb\u003e: $6,506 (-1.90%)\u003cbr\u003eForecast: $6,707 (+1.12%)\u003cbr\u003eError: -3.02 pp\u003cbr\u003eWeek: Mar 20, 2026","\u003cb\u003eActual\u003c\u002fb\u003e: $6,369 (-2.12%)\u003cbr\u003eForecast: $6,505 (-0.03%)\u003cbr\u003eError: -2.09 pp\u003cbr\u003eWeek: Mar 27, 2026","\u003cb\u003eActual\u003c\u002fb\u003e: $6,583 (+3.36%)\u003cbr\u003eForecast: $6,344 (-0.39%)\u003cbr\u003eError: +3.75 pp\u003cbr\u003eWeek: Apr 03, 2026","\u003cb\u003eActual\u003c\u002fb\u003e: $6,817 (+3.56%)\u003cbr\u003eForecast: $6,595 (+0.18%)\u003cbr\u003eError: +3.38 pp\u003cbr\u003eWeek: Apr 10, 2026","\u003cb\u003eActual\u003c\u002fb\u003e: $7,126 (+4.54%)\u003cbr\u003eForecast: $6,820 (+0.04%)\u003cbr\u003eError: +4.50 pp\u003cbr\u003eWeek: Apr 17, 2026","\u003cb\u003eActual\u003c\u002fb\u003e: $7,165 (+0.55%)\u003cbr\u003eForecast: $7,151 (+0.35%)\u003cbr\u003eError: +0.20 pp\u003cbr\u003eWeek: Apr 24, 2026","\u003cb\u003eActual\u003c\u002fb\u003e: $7,230 (+0.91%)\u003cbr\u003eForecast: $7,183 (+0.25%)\u003cbr\u003eError: +0.66 pp\u003cbr\u003eWeek: May 01, 2026","\u003cb\u003eActual\u003c\u002fb\u003e: $7,399 (+2.33%)\u003cbr\u003eForecast: $7,238 (+0.11%)\u003cbr\u003eError: +2.22 pp\u003cbr\u003eWeek: May 08, 2026"],"x":["2026-03-06T00:00:00","2026-03-13T00:00:00","2026-03-20T00:00:00","2026-03-27T00:00:00","2026-04-03T00:00:00","2026-04-10T00:00:00","2026-04-17T00:00:00","2026-04-24T00:00:00","2026-05-01T00:00:00","2026-05-08T00:00:00"],"y":[6740.02,6632.19,6506.48,6368.85,6582.69,6816.89,7126.06,7165.08,7230.12,7398.93],"type":"scatter","xaxis":"x","yaxis":"y"},{"cells":{"align":"center","fill":{"color":[["#1e293b","#0f4c75"],["#1e293b","#0f4c75"],["#1e293b","#0f4c75"],["#1e293b","#0f4c75"],["#1e293b","#0f4c75"],["#1e293b","#0f4c75"]]},"font":{"color":"white","size":11},"values":[["XGBoost","RandomForest"],["2.565","2.210"],["2.081","1.748"],["43.5%","45.9%"],["48.9%","50.9%"],["48.9% \u002f 48.9","61.7% \u002f 55.8"]]},"header":{"align":"center","fill":{"color":"#1e293b"},"font":{"color":"white","size":11},"values":["Model","RMSE","MAE","Dir. Acc.","Precision","Recall \u002f F1"]},"type":"table","domain":{"x":[0.0,1.0],"y":[0.0,0.23]}}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"rangeslider":{"visible":false}},"yaxis":{"anchor":"x","domain":[0.31,1.0]},"annotations":[{"font":{"size":16},"showarrow":false,"text":"S&P 500 Price + Predictions","x":0.5,"xanchor":"center","xref":"paper","y":1.0,"yanchor":"bottom","yref":"paper"},{"font":{"size":16},"showarrow":false,"text":"Model Metrics","x":0.5,"xanchor":"center","xref":"paper","y":0.23,"yanchor":"bottom","yref":"paper"},{"arrowcolor":"#f59e0b","arrowhead":2,"bgcolor":"rgba(0,0,0,0.6)","bordercolor":"#f59e0b","font":{"color":"#f59e0b","size":11},"showarrow":true,"text":"CURRENT FORECAST\u003cbr\u003e\u003cb\u003e$7,405\u003c\u002fb\u003e\u003cbr\u003e$7,242 \u2013 $7,569","x":"2026-05-15T00:00:00","xref":"x","y":7405.35,"yref":"y"}],"shapes":[{"fillcolor":"rgba(59,130,246,0.10)","layer":"below","line":{"color":"rgba(59,130,246,0.35)","dash":"dot","width":1},"type":"rect","x0":"2026-05-08","x1":"2026-05-15","xref":"x","y0":7241.85,"y1":7568.85,"yref":"y"}],"title":{"font":{"size":18,"color":"white"},"text":"The Oracle \u2014 S&P 500 Weekly Forecast | Updated: 2026-05-12 21:54 UTC"},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"right","x":1},"showlegend":true,"height":750},                        {"displayModeBar": true, "responsive": true}                    )                };            </script>        </div>
+
+</div><!-- close o-chart-wrapper -->
+
+<section class="o-info">
+  <div class="o-info__container">
+
+    <p class="o-section-label">Methodology &amp; Features</p>
+
+    <div class="o-grid">
+
+      <!-- How it works -->
+      <div class="o-card o-card--wide o-card--accent">
+        <h2>How It Works</h2>
+        <p>
+          Every Monday, the pipeline downloads 5 years of S&amp;P 500 (OHLCV) and VIX data,
+          engineers 10 technical features for the most recent week, and retrains both models
+          on a rolling 2-year window (104 weeks). The model with the lower walk-forward RMSE
+          wins and generates the weekly forecast.
+          This week&#8217;s forecast: <strong style="color:#3b82f6">$7,405</strong>
+          &mdash; range <strong style="color:#94a3b8">$7,242&ndash;$7,569</strong>
+          (+0.09%) &mdash; the model expects a <strong>upward</strong> week for the S&amp;P 500.
+        </p>
+      </div>
+
+      <!-- Features table -->
+      <div class="o-card o-card--wide">
+        <h2>Input Features (10)</h2>
+        <p style="margin-bottom:16px">
+          All features are computed using data available at or before Friday&#8217;s close of week W.
+          The target (next week&#8217;s return) uses the Friday W+1 close.
+          No future data ever leaks into the features.
+        </p>
+        <table class="o-table">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Source</th>
+      <th>Why it matters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>RSI (14)</td>
+      <td>S&amp;P 500 weekly</td>
+      <td>Momentum oscillator — signals overbought (&gt;70) or oversold (&lt;30) conditions.</td>
+    </tr>
+    <tr>
+      <td>EMA (12)</td>
+      <td>S&amp;P 500 weekly</td>
+      <td>Exponential MA weighted toward recent prices — reacts faster than SMA to trend shifts.</td>
+    </tr>
+    <tr>
+      <td>Price / SMA20</td>
+      <td>Derived</td>
+      <td>How far price has deviated from its 20-week average — mean-reversion signal.</td>
+    </tr>
+    <tr>
+      <td>Trend Spread</td>
+      <td>Derived</td>
+      <td>(SMA20 &minus; SMA50) / SMA50 &times; 100. Positive = short trend above long trend (bullish); negative = compression or downtrend. Price-level independent.</td>
+    </tr>
+    <tr>
+      <td>VIX Level</td>
+      <td>CBOE daily (Fri close)</td>
+      <td>Market fear gauge — elevated VIX precedes volatile weeks and risk-off selling.</td>
+    </tr>
+    <tr>
+      <td>VIX Change</td>
+      <td>CBOE daily (derived)</td>
+      <td>Week-over-week % change in VIX. A spike matters more than the absolute level — captures fear acceleration.</td>
+    </tr>
+    <tr>
+      <td>Lag Return &minus;1W</td>
+      <td>S&amp;P 500 weekly</td>
+      <td>Previous week's return — short-term momentum signal.</td>
+    </tr>
+    <tr>
+      <td>Lag Return &minus;2W</td>
+      <td>S&amp;P 500 weekly</td>
+      <td>Two-week-ago return — momentum continuation signal.</td>
+    </tr>
+    <tr>
+      <td>Lag Return &minus;3W</td>
+      <td>S&amp;P 500 weekly</td>
+      <td>Three-week-ago return — baseline for momentum decay pattern.</td>
+    </tr>
+    <tr>
+      <td>Realized Vol</td>
+      <td>S&amp;P 500 daily</td>
+      <td>Std dev of 5 daily returns within the week — current volatility regime proxy.</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+
+      <!-- Why these models -->
+      <div class="o-card">
+        <h2>Why XGBoost &amp; Random Forest?</h2>
+        <p>
+          Financial return data is noisy and non-linear — linear regression consistently
+          underperforms. Both tree-based ensembles handle this well without manual
+          feature interaction engineering.
+        </p>
+        <div class="o-model-row">
+          <div class="o-model-chip">
+            <div class="o-model-chip__name">XGBoost</div>
+            <div class="o-model-chip__desc">
+              Gradient boosting: each tree corrects the residuals of the previous one.
+              Aggressive learner — excels when the signal is consistent.
+            </div>
+          </div>
+          <div class="o-model-chip">
+            <div class="o-model-chip__name">Random Forest</div>
+            <div class="o-model-chip__desc">
+              Bagging ensemble: many uncorrelated trees vote together.
+              Conservative learner — more robust when data is noisy or regime-shifting.
+            </div>
+          </div>
+        </div>
+        <p>
+          By running both every week and picking the winner by walk-forward RMSE, the
+          pipeline adapts to whichever model fits the current market regime better.
+        </p>
+      </div>
+
+      <!-- Validation & no-leakage -->
+      <div class="o-card">
+        <h2>Walk-Forward Validation &amp; No Data Leakage</h2>
+        <ul>
+          <li>
+            <strong>TimeSeriesSplit (5 folds):</strong> in every fold, training data
+            always precedes validation data in time. Standard k-fold would mix future
+            data into training — a critical flaw in time-series forecasting.
+          </li>
+          <li>
+            <strong>RobustScaler over StandardScaler:</strong> financial returns have
+            extreme outliers (COVID crash, flash crashes). RobustScaler uses median +
+            IQR instead of mean + std, making it resistant to those spikes.
+          </li>
+          <li>
+            <strong>Rolling 2-year window:</strong> the market of 2020 behaves
+            structurally differently from 2024. Training on all available history would
+            dilute current-regime patterns; 104 weeks keeps the model anchored to
+            recent market dynamics.
+          </li>
+          <li>
+            <strong>Scaler fit on train only:</strong> the RobustScaler is fitted
+            exclusively on training rows and then applied to the prediction row —
+            never the reverse.
+          </li>
+        </ul>
+      </div>
+
+    </div><!-- close o-grid -->
+  </div><!-- close o-info__container -->
+</section>
+
+<footer class="o-footer">
+  <p>
+    Educational project &mdash; Not financial advice. &nbsp;&middot;&nbsp;
+    Last updated: 2026-05-12 21:54 UTC &nbsp;&middot;&nbsp;
+    <a href="../index.html">&#8592; Back to Portfolio</a>
+  </p>
+</footer>
+</body>
+</html>
